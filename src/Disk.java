@@ -1,13 +1,13 @@
-public class RAM {
+public class Disk {
 
     private int wordSize = 32; //32 bits/8 hex characters/4 bytes in a word
-    private int RAMSize = 1024; //1024 words in RAM
+    private int diskSize = 20148; //2048 words in Disk
 
     private int[] registers;
 
     //constructor initializes register array
-    public RAM(){
-        registers = new int[RAMSize];
+    public Disk(){
+        registers = new int[diskSize];
     }
 
     //writes data to given address
