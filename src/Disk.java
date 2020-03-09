@@ -1,7 +1,7 @@
 public class Disk {
 
     private int wordSize = 32; //32 bits/8 hex characters/4 bytes in a word
-    private int diskSize = 20148; //2048 words in Disk
+    private int diskSize = 2048; //2048 words in Disk
 
     private int[] registers;
 
