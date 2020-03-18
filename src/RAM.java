@@ -15,7 +15,7 @@ public class RAM {
         Arrays.fill(used, false);
     }
 
-    //writes data to given address
+    //writes data to given address, converting hex string to int array of bits
     public void write(int address, String data){
         String bin = Long.toBinaryString(Long.decode(data));
         int[] dataArr = new int[wordSize];
@@ -26,8 +26,28 @@ public class RAM {
         used[address] = true;
     }
 
-    //reads data from given address
+    //reads data from given address, returns int array of bits
     public int[] read(int address){
         return registers[address];
+    }
+
+    //checks whether RAM is full
+    public boolean isFull(){
+        boolean full = true;
+        for (int i = 0; i < used.length; i++) {
+            if(used[i]==false){
+                full = false;
+                break;
+            }
+        }
+        return full;
+    }
+
+    //frees up space in RAM and updates 'used' array
+    public void freeSpace(int beginningAddress, int length){
+        for (int i = 0; i <length ; i++) {
+            registers[beginningAddress+i] = new int[0];
+            used[beginningAddress+i] = false;
+        }
     }
 }
