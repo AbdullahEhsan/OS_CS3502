@@ -2,6 +2,12 @@ import java.io.*;
 import java.util.*;
 
 
+/*Created by Leeford 
+*
+*
+*
+*/
+
 public class PCB
 {
 
@@ -11,13 +17,16 @@ public class PCB
 	double memory_limit;
 	double [] resources={};
 
-	public PCB(double a,char b,double[]c, double d, double[]e)
+	public PCB()
 	{
-		prog_num=a;
-		state=b;
-		registers=c;
-		memory_limit=d;
-		resources=e;
+		cpu_id=0;
+		prog_num=0;
+		prog_count=0;
+		code_size=0;
+		registers={0};
+		memory_limit=0;
+		resources={0};
+		
 	}
 
 
