@@ -7,9 +7,9 @@ public class PCB
 
 	double cpu_id,prog_num,prog_count,code_size;
 	char[] state={"ready","running","waiting","halted"};
-	double[] registers;
+	double[] registers={};
 	double memory_limit;
-	double [] resources;
+	double [] resources={};
 
 	public PCB(double a,char b,double[]c, double d, double[]e)
 	{
