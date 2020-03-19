@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+
+//By Abdullah
 
 public class Disk {
 
@@ -31,6 +34,16 @@ public class Disk {
         return registers[address];
     }
 
+    //reads data from given address, returns string of hex
+    public String readAsString(int address){
+        String data="";
+        for (int i = 0; i <registers[address].length ; i++) {
+            data = data+registers[address][i];
+        }
+        long decimal = Long.parseLong(data,2);
+        return "0x"+Long.toString(decimal,16);
+    }
+
     //checks whether Disk is full
     public boolean isFull(){
         boolean full = true;
@@ -41,6 +54,37 @@ public class Disk {
             }
         }
         return full;
+    }
+
+    //returns largest chunk of disk space
+    public int[] getFreeDiskSpace(){
+        int len=0;
+        ArrayList<Integer> beginning = new ArrayList<>(), length = new ArrayList<>();
+        boolean free=false;
+        for (int i = 0; i < registers.length; i++) {
+            if(!used[i]){
+                if(!free) {
+                    beginning.add(i);
+                    len=0;
+                    free=true;
+                }
+                len++;
+            }
+            else{
+                if (len>0) length.add(len);
+                free=false;
+            }
+        }
+        if(length.isEmpty()){
+            return new int[]{0, 0};
+        }
+        else{
+            int max=0;
+            for (int i = 0; i < length.size(); i++) {
+                if(length.get(i)>max) max = i;
+            }
+            return new int[]{beginning.get(max),length.get(max)};
+        }
     }
 
     //frees up space in Disk and updates 'used' array

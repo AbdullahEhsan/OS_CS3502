@@ -1,7 +1,4 @@
-import java.io*;
-import java.util.*;
-
-/*Created by Leeford 
+/*Created by Leeford
 *
 *
 *
@@ -9,7 +6,7 @@ import java.util.*;
 
 
 
-public class CPU extends PCB
+public class CPU
 {
 	int cpu_id=0;
 	int prog_num;
@@ -21,7 +18,7 @@ public class CPU extends PCB
 	public String fetch(int prog_count)
 	{
 
-		String instr=table.registers[prog_count];
+		String instr= ""+table.registers[prog_count];
 		return instr; //returns a HEX string of the instructions
 
 	}
@@ -56,7 +53,7 @@ public class CPU extends PCB
 		return opCode;
 	}
 
-	public execute()
+	public void execute()
 	{
 
 	}

@@ -5,7 +5,7 @@
 *
 */
 
-public class helper
+public class Helper
 {
 	public static int convertFromHexToDecimal(String Hex)
 	{
@@ -32,7 +32,7 @@ public class helper
 
 	public static int convertFromBinaryStringToDecimalInteger(String binary)
 	{
-		int a=Integer.parseInt(bin,2);
-		return i;
+		int a=Integer.parseInt(binary,2);
+		return a;
 	}
 }
