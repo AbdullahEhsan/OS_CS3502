@@ -6,6 +6,7 @@ public class Loader {
     private BufferedReader file;
     private Disk disk;
     private ArrayList<PCB> pcbArrayList;
+    private PCB pcb;
 
     public Loader(String fileLocation, Disk diskInUse, ArrayList<PCB> pcbs){
         try{
@@ -18,7 +19,6 @@ public class Loader {
     public void load() throws IOException {
         String line;
         int diskIndex = 0;
-        PCB pcb;
         while((line = file.readLine()) != null){
             if(line.contains("JOB")){
                 pcb=new PCB();
