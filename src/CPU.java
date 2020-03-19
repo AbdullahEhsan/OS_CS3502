@@ -14,8 +14,12 @@ public class CPU
 	int opCode;
 	public PCB table;
 
+    public CPU() {
 
-	public String fetch(int prog_count)
+    }
+
+
+    public String fetch(int prog_count)
 	{
 
 		String instr= ""+table.registers[prog_count];

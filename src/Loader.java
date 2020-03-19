@@ -8,11 +8,11 @@ public class Loader {
     private ArrayList<PCB> pcbArrayList;
     private PCB pcb;
 
-    public Loader(String fileLocation, Disk diskInUse, ArrayList<PCB> pcbs){
+    public Loader(String fileLocation, Disk diskInUse, ArrayList<PCB> pcbList){
         try{
            file = new BufferedReader(new FileReader(fileLocation));
            disk = diskInUse;
-           pcbArrayList = pcbs;
+           pcbArrayList = pcbList;
         }
         catch (Exception e) {}
     }

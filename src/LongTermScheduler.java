@@ -9,11 +9,11 @@ public class LongTermScheduler {
     private ArrayList<PCB> pcbArrayList;
     private ArrayList<PCB> readyQueue;
 
-    public LongTermScheduler(Disk d, RAM r, ArrayList<PCB> p, ArrayList<PCB> q){
-        pcbArrayList=p;
+    public LongTermScheduler(Disk d, RAM r, ArrayList<PCB> pcblist, ArrayList<PCB> readyq){
+        pcbArrayList=pcblist;
         ram=r;
         disk=d;
-        readyQueue=q;
+        readyQueue=readyq;
     }
 
     public void schedule(){
