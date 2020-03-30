@@ -33,18 +33,40 @@ public class CPU
 
 		switch()
 		{
+			/*Arithmetic instruction format
+			*First two bits are always 00
+			*Two first 4-bits interval are S-reg(Source Register)
+			*Last 4-bits interval is the D-reg(Destination register)
+			*The last 12 bits are always 0 <not used>
+			*/
 			case 00: //Arithmetic instruction format
 			{
 				break;
 			}
+			/*Conditional Branch and Immediate format
+			*First two bits are always 01
+			*The next 6-bits indicate the immediate type of instruction
+			*First 4-bits are for the Base register
+			*Next 4-bits are the Destination register
+			*The last 16-bits may be an address or an immediate data
+			*/
 			case 01: //Conditional Branch and Immediate format
 			{
 				break;
 			}
+			/*Unconditional Jump format
+			*First 2-bits are always 10, with a jump to the specified address.
+			*
+			*/
 			case 10: //Unconditional Jump format
 			{
 				break;
 			}
+			/*Input and Output instruction format
+			*First 2-bits are always 11
+			*The instruction may read the content of Address/Reg 2 into Reg1
+			*The instruction may write the content of Reg 1 into a specified Address/Reg 2.
+			*/
 			case 11: //Input and Output instruction format
 			{
 				break;
