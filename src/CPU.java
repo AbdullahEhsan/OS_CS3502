@@ -6,15 +6,23 @@
 
 
 
-public class CPU
+public class CPU extends Helper, PCB
 {
-	int cpu_id=0;
-	int prog_num;
-	int mem=0;
-	int opCode;
+	public int cpu_id=0;
+	public int prog_num;
+	public int mem=0;
+	public int opCode;
 	public PCB table;
 
-    public CPU() {
+	public int InstructType;
+	public int opCode;
+
+	public int DReg,Breg,Sreg1,Sreg2;
+	public int tempReg1,tempReg2;
+	public int Address;
+
+	public CPU() 
+	{
 
     }
 
@@ -29,9 +37,10 @@ public class CPU
 
 	public int decode(String instruction)
 	{
-		String instrc;
+		String tempInstruct=Helper.convertFromHexStringToBinString(instruction.substring(2));
+		InstructType=Integer.parseInt(tempInstruct.substring(0,2));
 
-		switch()
+		switch(InstructType)
 		{
 			/*Arithmetic instruction format
 			*First two bits are always 00
@@ -41,6 +50,9 @@ public class CPU
 			*/
 			case 00: //Arithmetic instruction format
 			{
+				Sreg1=Helper.convertFromBinaryStringToDecimalInteger(tempInstruct.substring(8,12));
+				Sreg2=Helper.convertFromBinaryStringToDecimalInteger(tempInstruct.substring(12,16));
+				DReg=Helper.convertFromBinaryStringToDecimalInteger(tempInstruct.substring(16,20));
 				break;
 			}
 			/*Conditional Branch and Immediate format
@@ -52,6 +64,9 @@ public class CPU
 			*/
 			case 01: //Conditional Branch and Immediate format
 			{
+				Breg=Helper.convertFromBinaryStringToDecimalInteger(tempInstruct.substring(8,12));
+				DReg=Helper.convertFromBinaryStringToDecimalInteger(tempInstruct.substring(12,16));
+				Address=Helper.convertFromBinaryStringToDecimalInteger(tempInstruct.substring(16));
 				break;
 			}
 			/*Unconditional Jump format
@@ -60,6 +75,7 @@ public class CPU
 			*/
 			case 10: //Unconditional Jump format
 			{
+				Address=Helper.convertFromBinaryStringToDecimalInteger(tempInstruct.substring(8));
 				break;
 			}
 			/*Input and Output instruction format
@@ -69,6 +85,9 @@ public class CPU
 			*/
 			case 11: //Input and Output instruction format
 			{
+				tempReg1=Helper.convertFromBinaryStringToDecimalInteger(tempInstruct.substring(8,12));
+				tempReg2=Helper.convertFromBinaryStringToDecimalInteger(tempInstruct.substring(12,16));
+				Address=Helper.convertFromBinaryStringToDecimalInteger(tempInstruct.substring(16));
 				break;
 			}
 			default:
@@ -79,8 +98,171 @@ public class CPU
 		return opCode;
 	}
 
-	public void execute()
+	public void execute(int opCode)
 	{
+		int instr=opCode;
+
+		switch(instr)
+		{
+			case RD:
+			{
+				break;
+			}
+	
+			case WR:
+			{
+				break;
+			}
+	
+			case ST:
+			{
+				break;
+			}
+	
+			case LW:
+			{
+				break;
+			}
+	
+			case MOV:
+			{
+				break;
+			}
+	
+			case ADD:
+			{
+
+	
+				break;
+			}
+	
+			case SUB:
+			{
+
+	
+				break;
+			}
+	
+			case MUL:
+			{
+
+	
+				break;
+			}
+	
+			case DIV:
+			{
+	
+				break;
+			}
+	
+			case AND:
+			{
+	
+				break;
+			}
+	
+			case OR:
+			{
+	
+				break;
+			}
+	
+			case MOVI:
+			{
+				break;
+			}
+	
+			case ADDI:
+			{
+				
+				break;
+			}
+	
+			case MULI:
+			{
+				
+				break;
+			}
+	
+			case DIVI:
+			{
+				
+				break;
+			}
+	
+			case LDI:
+			{
+				
+				break;
+			}
+	
+			case SLT:
+			{
+				
+				break;
+			}
+	
+			case SLTI:
+			{
+				
+				break;
+			}
+	
+			case HLT:
+			{
+				break;
+			}
+	
+			case NOP:
+			{
+				break;
+			}
+	
+			case JMP:
+			{
+				
+				break;
+			}
+	
+			case BEQ:
+			{
+				
+	
+				break;
+			}
+	
+			case BNE:
+			{
+				
+				break;
+			}
+	
+			case BEZ:
+			{
+				
+	
+				break;
+			}
+	
+			case BNZ:
+			{
+				
+				break;
+			}
+	
+			case BGZ:
+			{
+	
+				break;
+			}
+	
+			case BLZ:
+			{
+	
+				break;
+			}
+		}
 
 	}
 
