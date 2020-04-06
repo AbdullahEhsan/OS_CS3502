@@ -5,10 +5,10 @@ public class Loader {
 
     private BufferedReader file;
     private Disk disk;
-    private ArrayList<PCB> pcbArrayList;
-    private PCB pcb;
+    private ArrayList<ProcessControlBlock> pcbArrayList;
+    private ProcessControlBlock pcb;
 
-    public Loader(String fileLocation, Disk diskInUse, ArrayList<PCB> pcbList){
+    public Loader(String fileLocation, Disk diskInUse, ArrayList<ProcessControlBlock> pcbList){
         try{
            file = new BufferedReader(new FileReader(fileLocation));
            disk = diskInUse;
@@ -21,18 +21,18 @@ public class Loader {
         int diskIndex = 0;
         while((line = file.readLine()) != null){
             if(line.contains("JOB")){
-                pcb=new PCB();
+                pcb=new ProcessControlBlock();
                 pcbArrayList.add(pcb);
 
                 String[] jobInfo = line.split(" ");
                 //info on job
-                pcb.jobID = Integer.parseInt(jobInfo[2], 16);
-                pcb.jobLength = Integer.parseInt(jobInfo[3], 16);
-                pcb.jobPriority = Integer.parseInt(jobInfo[4], 16);
-                pcb.jobAddress = diskIndex;
+                pcb.setJobID(Integer.parseInt(jobInfo[2], 16));
+                pcb.setJobLength(Integer.parseInt(jobInfo[3], 16));
+                pcb.setJobPriority(Integer.parseInt(jobInfo[4], 16));
+                pcb.setJobAddress(diskIndex);
 
                 //writes to disk
-                for(int i = 0; i<pcb.jobLength; i++){
+                for(int i = 0; i<pcb.getJobLength(); i++){
                     disk.write(diskIndex, file.readLine());
                     diskIndex++;
                 }
@@ -41,14 +41,13 @@ public class Loader {
                 String[] dataInfo = line.split(" ");
 
                 //info on data
-                pcb.inputBufferSize = Integer.parseInt(dataInfo[2], 16);
-                pcb.outputBufferSize = Integer.parseInt(dataInfo[3], 16);
-                pcb.tempBufferSize = Integer.parseInt(dataInfo[4], 16);
-                pcb.totalBufferSize = pcb.inputBufferSize+pcb.outputBufferSize+pcb.tempBufferSize;
-                pcb.bufferAddress=diskIndex;
+                pcb.setInputBufferSize(Integer.parseInt(dataInfo[2], 16));
+                pcb.setOutputBufferSize(Integer.parseInt(dataInfo[3], 16));
+                pcb.setTempBufferSize(Integer.parseInt(dataInfo[4], 16));
+                pcb.setBufferAddress(diskIndex);
 
                 //writes to disk
-                for(int i = 0; i<pcb.totalBufferSize; i++){
+                for(int i = 0; i<pcb.getTotalBufferSize(); i++){
                     disk.write(diskIndex, file.readLine());
                     diskIndex++;
                 }

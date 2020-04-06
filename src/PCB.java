@@ -17,10 +17,6 @@ public class PCB
 	double memory_limit;
 	double [] resources={};
 
-
-	int jobID, jobLength, jobPriority, jobAddress;
-	int inputBufferSize, outputBufferSize, tempBufferSize, totalBufferSize, bufferAddress;
-
 	public PCB()
 	{
 		cpu_id=0;
